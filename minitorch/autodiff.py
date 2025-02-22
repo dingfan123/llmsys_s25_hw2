@@ -140,9 +140,9 @@ def backpropagate(variable: Variable, deriv: Any) -> None:
 
         for (p, dparent) in v.chain_rule(grad_v):
             if p.unique_id not in grads:
-                grads[p.unique_id] = dparent
+                grads[p.unique_id] = dparent + 0.0
             else:
-                grads[p.unique_id] += dparent
+                grads[p.unique_id] += dparent + 0.0
             if p.is_leaf():
                 p.accumulate_derivative(dparent)
 
